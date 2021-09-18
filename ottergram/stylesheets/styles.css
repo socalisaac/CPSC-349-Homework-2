@@ -144,3 +144,19 @@ a {
 .hidden-detail .thumbnail-item {
     max-width: 80%;
 }
+
+.btn{
+  border: 1px;
+  outline: none;
+  background:#d86310b7;
+  padding:10px 30px;
+  font-size: 50px;
+  color:#ddd;
+  cursor: pointer;
+  margin:10px auto;        
+display: block;     
+}
+
+.btn:hover{
+  background: #111;
+}

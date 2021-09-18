@@ -48,6 +48,9 @@ function addThumbClickHandler(thumb) {
     'use strict';
     thumb.addEventListener('click', function (event) {
         event.preventDefault();
+        console.log(currentIndex)
+        currentIndex = parseInt(indexFromThumb(thumb));
+        console.log(currentIndex)
         setDetailsFromThumb(thumb);
         showDetails();
     });
@@ -103,6 +106,7 @@ function next(){
         nextIndex =  currentIndex + 1
         currentIndex = nextIndex
     }
+    console.log(currentIndex)
     
     setDetailsFromThumb(listOfOtters[nextIndex]);
     showDetails();
@@ -119,6 +123,7 @@ function prev(){
         nextIndex =  currentIndex - 1
         currentIndex = nextIndex
     }
+    console.log(currentIndex)
 
     setDetailsFromThumb(listOfOtters[nextIndex]);
     showDetails();
