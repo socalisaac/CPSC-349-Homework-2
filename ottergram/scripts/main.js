@@ -3,6 +3,8 @@ var DETAIL_TITLE_SELECTOR = '[data-image-role="title"]';
 
 var DETAIL_FRAME_SELECTOR = '[data-image-role="frame"]';
 
+var DETAIL_INDEX_SELECTOR = '[current-index=1]';
+
 var THUMBNAIL_LINK_SELECTOR = '[data-image-role="trigger"]';
 
 var HIDDEN_DETAIL_CLASS = 'hidden-detail';
@@ -11,7 +13,9 @@ var ESC_KEY = 27;
 
 test = 27;
 
-function setDetails(imageUrl, titleText) {
+var currentIndex = 0;
+
+function setDetails(imageUrl, titleText){
     'use strict';
 
     var detailImage = document.querySelector(DETAIL_IMAGE_SELECTOR);
@@ -29,6 +33,11 @@ function imageFromThumb(thumb) {
 function titleFromThumb(thumb) {
     'use strict';
     return thumb.getAttribute('data-image-title');
+}
+
+function indexFromThumb(thumb) {
+    'use strict';
+    return thumb.getAttribute('index');
 }
 
 function setDetailsFromThumb(thumb) {
@@ -81,6 +90,39 @@ function initializeEvents() {
     var thumbnails = getThumbnailsArray();
     thumbnails.forEach(addThumbClickHandler);
     addKeyPressHandler();
+}
+
+function next(){
+    var listOfOtters = getThumbnailsArray()
+
+    if(currentIndex + 1 > 4){
+        nextIndex =  0
+        currentIndex = nextIndex
+    }
+    else{
+        nextIndex =  currentIndex + 1
+        currentIndex = nextIndex
+    }
+    
+    setDetailsFromThumb(listOfOtters[nextIndex]);
+    showDetails();
+}
+
+function prev(){
+    var listOfOtters = getThumbnailsArray()
+
+    if(currentIndex - 1 < 0){
+        nextIndex =  4
+        currentIndex = nextIndex
+    }
+    else{
+        nextIndex =  currentIndex - 1
+        currentIndex = nextIndex
+    }
+
+    setDetailsFromThumb(listOfOtters[nextIndex]);
+    showDetails();
+
 }
 
 initializeEvents();
