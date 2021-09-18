@@ -15,7 +15,7 @@ test = 27;
 
 var currentIndex = 0;
 
-function setDetails(imageUrl, titleText){
+function setDetails(imageUrl, titleText) {
     'use strict';
 
     var detailImage = document.querySelector(DETAIL_IMAGE_SELECTOR);
@@ -63,28 +63,30 @@ function getThumbnailsArray() {
     return thumbnailArray;
 }
 
-function hideDetails() { 
+function hideDetails() {
     'use strict';
     document.body.classList.add(HIDDEN_DETAIL_CLASS);
 }
 
-function showDetails() { 
+function showDetails() {
     'use strict';
     var frame = document.querySelector(DETAIL_FRAME_SELECTOR);
     document.body.classList.remove(HIDDEN_DETAIL_CLASS);
-    
+
     frame.classList.add(TINY_EFFECT_CLASS);
-    setTimeout(function() {
+    setTimeout(function () {
         frame.classList.remove(TINY_EFFECT_CLASS);
     }, 50);
 }
 
-function addKeyPressHandler() { 
+function addKeyPressHandler() {
     'use strict';
-    document.body.addEventListener('keyup', function(event) {
+    document.body.addEventListener('keyup', function (event) {
         event.preventDefault();
         console.log(event.keyCode);
-        if (event.keyCode === ESC_KEY) { hideDetails(); }
+        if (event.keyCode === ESC_KEY) {
+            hideDetails();
+        }
     });
 }
 
@@ -95,32 +97,30 @@ function initializeEvents() {
     addKeyPressHandler();
 }
 
-function next(){
+function next() {
     var listOfOtters = getThumbnailsArray()
 
-    if(currentIndex + 1 > 4){
-        nextIndex =  0
+    if (currentIndex + 1 > 4) {
+        nextIndex = 0
         currentIndex = nextIndex
-    }
-    else{
-        nextIndex =  currentIndex + 1
+    } else {
+        nextIndex = currentIndex + 1
         currentIndex = nextIndex
     }
     console.log(currentIndex)
-    
+
     setDetailsFromThumb(listOfOtters[nextIndex]);
     showDetails();
 }
 
-function prev(){
+function prev() {
     var listOfOtters = getThumbnailsArray()
 
-    if(currentIndex - 1 < 0){
-        nextIndex =  4
+    if (currentIndex - 1 < 0) {
+        nextIndex = 4
         currentIndex = nextIndex
-    }
-    else{
-        nextIndex =  currentIndex - 1
+    } else {
+        nextIndex = currentIndex - 1
         currentIndex = nextIndex
     }
     console.log(currentIndex)
@@ -131,4 +131,3 @@ function prev(){
 }
 
 initializeEvents();
-
